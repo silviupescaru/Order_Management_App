@@ -7,11 +7,6 @@ import java.util.logging.Logger;
 import bll.StudentBLL;
 import model.Student;
 
-/**
- * @Author: Technical University of Cluj-Napoca, Romania Distributed Systems
- *          Research Laboratory, http://dsrl.coned.utcluj.ro/
- * @Since: Apr 03, 2017
- */
 public class Start {
 	protected static final Logger LOGGER = Logger.getLogger(Start.class.getName());
 
@@ -22,7 +17,7 @@ public class Start {
 		Student student1 = null;
 
 		try {
-			student1 = studentBll.findStudentById(1245);
+			student1 = studentBll.findStudentById(2);
 
 		} catch (Exception ex) {
 			LOGGER.log(Level.INFO, ex.getMessage());

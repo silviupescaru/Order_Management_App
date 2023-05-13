@@ -10,11 +10,6 @@ import bll.validators.Validator;
 import dao.StudentDAO;
 import model.Student;
 
-/**
- * @Author: Technical University of Cluj-Napoca, Romania Distributed Systems
- *          Research Laboratory, http://dsrl.coned.utcluj.ro/
- * @Since: Apr 03, 2017
- */
 public class StudentBLL {
 
 	private List<Validator<Student>> validators;
@@ -22,7 +17,7 @@ public class StudentBLL {
 
 	public StudentBLL() {
 		validators = new ArrayList<Validator<Student>>();
-		validators.add(new EmailValidator());
+		//validators.add(new EmailValidator());
 		validators.add(new StudentAgeValidator());
 
 		studentDAO = new StudentDAO();

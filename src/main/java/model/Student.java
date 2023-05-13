@@ -1,10 +1,5 @@
 package model;
 
-/**
- * @Author: Technical University of Cluj-Napoca, Romania Distributed Systems
- *          Research Laboratory, http://dsrl.coned.utcluj.ro/
- * @Since: Apr 03, 2017
- */
 public class Student {
 	private int id;
 	private String name;

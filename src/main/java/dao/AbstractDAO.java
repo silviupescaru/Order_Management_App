@@ -14,12 +14,6 @@ import java.util.logging.Logger;
 
 import connection.ConnectionFactory;
 
-/**
- * @Author: Technical University of Cluj-Napoca, Romania Distributed Systems
- *          Research Laboratory, http://dsrl.coned.utcluj.ro/
- * @Since: Apr 03, 2017
- * @Source http://www.java-blog.com/mapping-javaobjects-database-reflection-generics
- */
 public class AbstractDAO<T> {
 	protected static final Logger LOGGER = Logger.getLogger(AbstractDAO.class.getName());
 

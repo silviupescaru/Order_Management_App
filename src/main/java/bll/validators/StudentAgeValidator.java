@@ -2,11 +2,6 @@ package bll.validators;
 
 import model.Student;
 
-/**
- * @Author: Technical University of Cluj-Napoca, Romania Distributed Systems
- *          Research Laboratory, http://dsrl.coned.utcluj.ro/
- * @Since: Apr 03, 2017
- */
 public class StudentAgeValidator implements Validator<Student> {
 	private static final int MIN_AGE = 7;
 	private static final int MAX_AGE = 30;
