@@ -12,18 +12,17 @@ import model.*;
 public class ProductBLL {
 
     //private List<Validator<Product>> validators;
-    private ProductDAO productDAO;
+    private final ProductDAO productDAO;
 
     public ProductBLL() {
         productDAO = new ProductDAO();
     }
 
-    public Product findProductById(int id) {
-        Product product = productDAO.findById(id);
+    public Product findProductById(int ID) {
+        Product product = productDAO.findById(ID);
         if (product == null) {
-            throw new NoSuchElementException("The product with id =" + id + " was not found!");
+            throw new NoSuchElementException("The product with id =" + ID + " was not found!");
         }
         return product;
     }
-
 }

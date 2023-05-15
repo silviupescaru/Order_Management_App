@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import bll.ProductBLL;
 import bll.StudentBLL;
+import model.Product;
 import model.Student;
 
 public class Start {
@@ -16,15 +18,20 @@ public class Start {
 
 		Student student1 = null;
 
+		ProductBLL productBLL = new ProductBLL();
+
+		Product product = null;
+
 		try {
-			student1 = studentBll.findStudentById(2);
+			//student1 = studentBll.findStudentById(2);
+			product = productBLL.findProductById(1);
 
 		} catch (Exception ex) {
 			LOGGER.log(Level.INFO, ex.getMessage());
 		}
 
 		// obtain field-value pairs for object through reflection
-		ReflectionExample.retrieveProperties(student1);
+		ReflectionExample.retrieveProperties(product);
 
 	}
 

@@ -44,7 +44,7 @@ public class AbstractDAO<T> {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		String query = createSelectQuery("id");
+		String query = createSelectQuery("ID");
 		try {
 			connection = ConnectionFactory.getConnection();
 			statement = connection.prepareStatement(query);
@@ -78,9 +78,12 @@ public class AbstractDAO<T> {
 				for (Field field : type.getDeclaredFields()) {
 					String fieldName = field.getName();
 					Object value = resultSet.getObject(fieldName);
+					//System.out.println(fieldName + " " + value + " ");
 					PropertyDescriptor propertyDescriptor = new PropertyDescriptor(fieldName, type);
 					Method method = propertyDescriptor.getWriteMethod();
+					//System.out.println(method);
 					method.invoke(instance, value);
+					//System.out.println(method);
 				}
 				list.add(instance);
 			}
