@@ -1,60 +1,60 @@
 package model;
 
 public class Product {
-    private int ID;
-    private double PRET;
-    private String NUME;
-    private int CANTITATE;
+    private int id;
+    private double price;
+    private String name;
+    private int quantity;
 
     public Product(){}
 
-    public Product(int ID, double PRET, String NUME, int CANTITATE){
+    public Product(int id, double price, String name, int quantity){
         super();
-        this.ID = ID;
-        this.PRET = PRET;
-        this.NUME = NUME;
-        this.CANTITATE = CANTITATE;
+        this.id = id;
+        this.price = price;
+        this.name = name;
+        this.quantity = quantity;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public double getPRET() {
-        return PRET;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPRET(double PRET) {
-        this.PRET = PRET;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public String getNUME() {
-        return NUME;
+    public String getName() {
+        return name;
     }
 
-    public void setNUME(String NUME) {
-        this.NUME = NUME;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getCANTITATE() {
-        return CANTITATE;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCANTITATE(int CANTITATE) {
-        this.CANTITATE = CANTITATE;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 
     @Override
     public String toString(){
-        return "Product [ID=" + ID + ", pret=" + PRET + ", nume=" + NUME + ", cantitate=" + CANTITATE;
+        return "Product [id=" + id + ", pret=" + price + ", nume=" + name + ", cantitate=" + quantity;
     }
     /*
-    *   ID
+    *   id
     *   PRET
     *   NUME
     *   CANTITATE

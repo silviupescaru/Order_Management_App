@@ -18,10 +18,10 @@ public class ProductBLL {
         productDAO = new ProductDAO();
     }
 
-    public Product findProductById(int ID) {
-        Product product = productDAO.findById(ID);
+    public Product findProductById(int id) {
+        Product product = productDAO.findById(id);
         if (product == null) {
-            throw new NoSuchElementException("The product with id =" + ID + " was not found!");
+            throw new NoSuchElementException("The product with id =" + id + " was not found!");
         }
         return product;
     }

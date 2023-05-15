@@ -2,7 +2,7 @@ package dao;
 
 import model.*;
 
-public class OrderDAO extends AbstractDAO<Order> {
+public class OrderDAO extends AbstractDAO<Orders> {
 
     // uses basic CRUD methods from superclass
 

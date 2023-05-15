@@ -1,11 +1,7 @@
 package bll;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 
-import bll.*;
-import bll.validators.*;
 import dao.*;
 import model.*;
 
@@ -18,8 +14,8 @@ public class OrderBLL {
         orderDAO = new OrderDAO();
     }
 
-    public Order findOrderById(int id) {
-        Order order = orderDAO.findById(id);
+    public Orders findOrderById(int id) {
+        Orders order = orderDAO.findById(id);
         if (order == null) {
             throw new NoSuchElementException("The order with id =" + id + " was not found!");
         }

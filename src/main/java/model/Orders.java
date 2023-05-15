@@ -1,15 +1,15 @@
 package model;
 
-public class Order {
+public class Orders {
     private int id;
     private int quantity;
     private int id_c;
     private int id_p;
 
-    public Order(){
+    public Orders(){
     }
 
-    public Order(int id, int quantity, int id_c, int id_p){
+    public Orders(int id, int quantity, int id_c, int id_p){
         super();
         this.id = id;
         this.quantity = quantity;
@@ -37,8 +37,16 @@ public class Order {
         return id_c;
     }
 
+    public void setId_c(int id_c) {
+        this.id_c = id_c;
+    }
+
     public int getId_p(){
         return id_p;
+    }
+
+    public void setId_p(int id_p) {
+        this.id_p = id_p;
     }
 
     @Override
