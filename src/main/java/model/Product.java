@@ -8,6 +8,11 @@ public class Product {
 
     public Product(){}
 
+    public Product(int id){
+        super();
+        this.id = id;
+    }
+
     public Product(int id, double price, String name, int quantity){
         super();
         this.id = id;
@@ -53,10 +58,5 @@ public class Product {
     public String toString(){
         return "Product [id=" + id + ", pret=" + price + ", nume=" + name + ", cantitate=" + quantity;
     }
-    /*
-    *   id
-    *   PRET
-    *   NUME
-    *   CANTITATE
-    * */
+
 }

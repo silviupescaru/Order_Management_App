@@ -8,6 +8,11 @@ public class Client {
 
     public Client() {}
 
+    public Client(int id){
+        super();
+        this.id = id;
+    }
+
     public Client(int id, String name, String address, String email) {
         super();
         this.id = id;

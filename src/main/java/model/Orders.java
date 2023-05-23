@@ -9,6 +9,18 @@ public class Orders {
     public Orders(){
     }
 
+    public Orders(int id){
+        super();
+        this.id = id;
+    }
+
+    public Orders(int quantity, int id_c, int id_p){
+        super();
+        this.quantity = quantity;
+        this.id_c = id_c;
+        this.id_p = id_p;
+    }
+
     public Orders(int id, int quantity, int id_c, int id_p){
         super();
         this.id = id;
