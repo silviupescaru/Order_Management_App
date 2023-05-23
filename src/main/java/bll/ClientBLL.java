@@ -11,11 +11,11 @@ import model.*;
 
 public class ClientBLL {
 
-    private List<Validator<Client>> validators;
-    private ClientDAO clientDAO;
+    private final List<Validator<Client>> validators;
+    private final ClientDAO clientDAO;
 
     public ClientBLL() {
-        validators = new ArrayList<Validator<Client>>();
+        validators = new ArrayList<>();
         validators.add(new EmailValidator());
         clientDAO = new ClientDAO();
     }
@@ -34,6 +34,10 @@ public class ClientBLL {
             throw new NoSuchElementException("The table client is empty");
         }
         return clients;
+    }
+
+    public Client insertClient(Client client){
+        return clientDAO.insert(client);
     }
 
 }

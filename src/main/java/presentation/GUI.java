@@ -1,6 +1,7 @@
 package presentation;
 
-import connection.ConnectionFactory;
+import dao.ClientDAO;
+import model.Client;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +15,6 @@ public class GUI extends JFrame{
     private JPanel InsertPanel;
     private JPanel ModifyPanel;
     private JTable table1;
-    private JTextField IDTextFieldTextField;
     private JTextField numeTextFieldTextField;
     private JTextField adresaTextFieldTextField;
     private JTextField emailTextFieldTextField;
@@ -23,6 +23,13 @@ public class GUI extends JFrame{
     private JButton EDITCLIENTButton;
     private JButton VIEWCLIENTSButton;
     private JPanel mainPanel;
+    private JPanel insetPanelOrder;
+    private JTable clientTable;
+    private JTable productTable;
+    private JTable ordersTable;
+    private JFormattedTextField a2FormattedTextField;
+    private JButton ADDTOORDERButton;
+    private JButton DELETEORDERButton;
 
 
     public GUI() {
@@ -84,9 +91,26 @@ public class GUI extends JFrame{
         ADDCLIENTButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Get the values from the JTextFields
+                String name = numeTextFieldTextField.getText();
+                String address = adresaTextFieldTextField.getText();
+                String email = emailTextFieldTextField.getText();
 
+                // Create a new instance of the client object and set its properties
+                Client client = new Client();
+                client.setName(name);
+                client.setAddress(address);
+                client.setEmail(email);
+
+                // Call the insert method to insert the client into the database
+                ClientDAO clientDAO = new ClientDAO(); // Assuming ClientDAO is your DAO class for the Client entity
+                clientDAO.insert(client);
+
+                // Show success message or perform any other desired action
+                //JOptionPane.showMessageDialog(null, "Client added successfully!");
             }
         });
+
     }
 
     public static void main(String[] args){

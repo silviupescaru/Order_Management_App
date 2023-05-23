@@ -3,10 +3,7 @@ package dao;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,11 +37,97 @@ public class AbstractDAO<T> {
 		return sb.toString();
 	}
 
-	private T insert(){
+	private String idCalc(T t){
+		String resultString = "";
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "root");
+			Statement statement = connection.createStatement();
+
+			String query = "SELECT COUNT(*) AS id FROM ";
+			query = query + type.getSimpleName();
+			ResultSet resultSet = statement.executeQuery(query);
+
+			int itemCount = 0;
+			if (resultSet.next()) {
+				itemCount = resultSet.getInt("id");
+			}
+			resultString = resultString + itemCount;
+
+			resultSet.close();
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultString;
+	}
+
+
+	private String createInsert(T t)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("INSERT INTO ");
+		sb.append(type.getSimpleName());
+		sb.append(" (");
+
+		Field[] fields = type.getDeclaredFields();
+		for (int i = 0; i < fields.length; i++)
+		{
+			Field field = fields[i];
+			sb.append(field.getName());
+			if (i != fields.length - 1) {
+				sb.append(", ");
+			}
+		}
+		sb.append(") VALUES (");
+
+		String idInsert = idCalc(t);
+		sb.append(idInsert);
+		sb.append(", ");
+
+		for (int i = 1; i < fields.length; i++)
+		{
+			sb.append("?");
+			if (i != fields.length - 1) {
+				sb.append(", ");
+			}
+		}
+		sb.append(")");
+		System.out.println(sb.toString());
+		return sb.toString();
+	}
+
+	public T insert(T t)
+	{
+		// TODO:
 		Connection conn = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		String query = "INSERT INTO ? "
+		String query = createInsert(t);
+		try {
+			conn = ConnectionFactory.getConnection();
+			statement = conn.prepareStatement(query);
+
+			int index = 1;
+			for (Field field : type.getDeclaredFields())
+			{
+				field.setAccessible(true);
+				Object value = field.get(t);
+				statement.setObject(index, value);
+				index++;
+				System.out.println(index);
+			}
+
+			statement.executeUpdate();
+			return t;
+		} catch (SQLException | IllegalAccessException e) {
+			LOGGER.log(Level.WARNING, type.getName() + "DAO:insert " + e.getMessage());
+		} finally {
+			ConnectionFactory.close(resultSet);
+			ConnectionFactory.close(statement);
+			ConnectionFactory.close(conn);
+		}
+		return t;
 	}
 
 	public List<T> findAll()
@@ -134,10 +217,6 @@ public class AbstractDAO<T> {
 		return list;
 	}
 
-	public T insert(T t) {
-		// TODO:
-		return t;
-	}
 
 	public T update(T t) {
 		// TODO:
