@@ -27,16 +27,45 @@ public class AbstractDAO<T> {
 
 	private String createSelectQuery(String field) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT ");
-		sb.append(" * ");
-		sb.append(" FROM ");
+		sb.append("SELECT * FROM ");
 		sb.append(type.getSimpleName());
 		sb.append(" WHERE " + field + " =?");
 		return sb.toString();
 	}
 
-	public List<T> findAll() {
+	private String createSelectAll() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT * FROM ");
+		sb.append(type.getSimpleName());
+		return sb.toString();
+	}
+
+	private T insert(){
+		Connection conn = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		String query = "INSERT INTO ? "
+	}
+
+	public List<T> findAll()
+	{
 		// TODO:
+		Connection conn = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		String query = createSelectAll();
+		try {
+			conn = ConnectionFactory.getConnection();
+			statement = conn.prepareStatement(query);
+			resultSet = statement.executeQuery();
+			return createObjects(resultSet);
+		} catch (SQLException e) {
+			LOGGER.log(Level.WARNING, type.getName() + "DAO:findAll " + e.getMessage());
+		} finally {
+			ConnectionFactory.close(resultSet);
+			ConnectionFactory.close(statement);
+			ConnectionFactory.close(conn);
+		}
 		return null;
 	}
 

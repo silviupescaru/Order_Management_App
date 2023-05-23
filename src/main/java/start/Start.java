@@ -1,6 +1,7 @@
 package start;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,21 +23,24 @@ public class Start {
 
 		ClientBLL clientBLL = new ClientBLL();
 		Client client = null;
+		List<Client> clients;
 
 		OrderBLL orderBLL = new OrderBLL();
 		Orders order = null;
 
 		try {
 			//product = productBLL.findProductById(1);
-			//client = clientBLL.findClientById(1);
-			order = orderBLL.findOrderById(1);
+			client = clientBLL.findClientById(1);
+			//order = orderBLL.findOrderById(1);
+			clients = clientBLL.findAllClient();
+			System.out.println(clients);
 
 		} catch (Exception ex) {
 			LOGGER.log(Level.INFO, ex.getMessage());
 		}
 
 		// obtain field-value pairs for object through reflection
-		ReflectionExample.retrieveProperties(order);
+		ReflectionExample.retrieveProperties(client);
 
 	}
 

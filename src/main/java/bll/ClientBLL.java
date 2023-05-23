@@ -28,4 +28,12 @@ public class ClientBLL {
         return client;
     }
 
+    public List<Client> findAllClient(){
+        List<Client> clients = clientDAO.findAll();
+        if(clients == null){
+            throw new NoSuchElementException("The table client is empty");
+        }
+        return clients;
+    }
+
 }

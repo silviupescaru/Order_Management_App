@@ -18,7 +18,7 @@ public class ConnectionFactory {
 
 	private static ConnectionFactory singleInstance = new ConnectionFactory();
 
-	private ConnectionFactory() {
+	public ConnectionFactory() {
 		try {
 			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
