@@ -445,6 +445,7 @@ public class GUI extends JFrame{
                 OrderBLL orderBLL = new OrderBLL();
                 for(int i = 0; i < rows.length; i++){
                     id = Integer.parseInt(model3.getValueAt(rows[i] - i, 0).toString());
+                    id--;
                     orderBLL.deleteOrder(new Orders(id));
                     model3.removeRow(rows[i] - i);
                 }
